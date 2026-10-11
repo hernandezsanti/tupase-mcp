@@ -1,6 +1,6 @@
 [project]
 name = "tupase-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cliente MCP no oficial para Tupase: busca, reserva y cancela actividades desde Claude."
 readme = "README.md"
 requires-python = ">=3.11"
