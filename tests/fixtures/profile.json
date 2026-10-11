@@ -1,0 +1,44 @@
+{
+  "activationCode": "<redacted>",
+  "activationTimeStamp": null,
+  "allowedCountry": "URUGUAY",
+  "alternateEmails": null,
+  "birthDate": "<redacted>",
+  "companyName": "<redacted>",
+  "contractAgreementType": "FULL_COMPANY",
+  "countryId": "UY",
+  "creationTimeStamp": "<redacted>",
+  "deviceIdentifier": "<redacted>",
+  "email": "<redacted>",
+  "entityGroupAllowance": {
+    "allowedEntityGroups": [
+      {
+        "global": true,
+        "name": "B"
+      },
+      {
+        "global": true,
+        "name": "I"
+      },
+      {
+        "global": true,
+        "name": "A"
+      }
+    ],
+    "name": "UNRESTRICTED"
+  },
+  "expirationDate": "<redacted>",
+  "firstName": "<redacted>",
+  "inactivationTimeStamp": null,
+  "infoCompleteTimeStamp": "<redacted>",
+  "lastName": "<redacted>",
+  "maxReservationsPerDay": null,
+  "phone": "<redacted>",
+  "status": "ACTIVE",
+  "statusStr": null,
+  "testAccount": null,
+  "userDocument": "<redacted>",
+  "userFullName": "<redacted>",
+  "userLogicalId": "<redacted>",
+  "validUntil": null
+}

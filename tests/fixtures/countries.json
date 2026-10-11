@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Uruguay",
+    "docRegExValidator": "[0-9]{7,8}",
+    "id": "UY"
+  },
+  {
+    "name": "Argentina",
+    "docRegExValidator": "[0-9a-zA-Z]{0,11}",
+    "id": "AR"
+  },
+  {
+    "name": "Bolivia",
+    "docRegExValidator": "[0-9]{7,} [0-9a-zA-Z]{2}",
+    "id": "BO"
+  }
+]
