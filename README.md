@@ -1,36 +1,38 @@
 # tupase-mcp
 
-Busca, reserva y cancela clases de [Tupase](https://www.tupaseapp.com) hablando con Claude, Cursor o cualquier cliente [MCP](https://modelcontextprotocol.io). *Unofficial MCP server for Tupase: search, book and cancel fitness classes from your AI assistant.*
+**English** | [Español](README.es.md)
 
-> **Cliente no oficial.** Este proyecto no tiene ninguna relación con Tupase ni cuenta con su aprobación. Usa la API privada de la app con **tu propia cuenta** y bajo tu responsabilidad: Tupase podría cambiarla o restringir el acceso en cualquier momento.
+Search, book and cancel classes on [Tupase](https://www.tupaseapp.com) by talking to Claude, Cursor or any [MCP](https://modelcontextprotocol.io) client. Tupase is a fitness and sports membership app used in Uruguay.
 
-Corre en tu computadora y le habla directamente a Tupase: no hay ningún servidor intermedio ni nadie más que vea tus datos.
+> **Unofficial client.** This project has no relationship with Tupase and does not have its approval. It uses the app's private API with **your own account** and at your own risk: Tupase could change the API or restrict access at any time.
 
-## Qué puedes pedirle
+It runs on your computer and talks directly to Tupase. There is no intermediate server, and nobody else sees your data.
 
-![Demo: buscar clases de pilates en Pocitos y reservar](docs/demo.gif)
+## What you can ask
 
-*Búsqueda real en Tupase. La reserva queda en vista previa hasta que confirmas, así que en esta demo no se reservó nada.*
+![Demo: searching pilates classes in Pocitos and booking one](docs/demo.gif)
 
-Otras cosas que funcionan:
+*Real search on Tupase (the demo is in Spanish). The booking stays as a preview until you confirm, so nothing was booked in this demo.*
 
-- "¿Cuáles son mis reservas de esta semana? Muéstrame el QR de la primera."
-- "Guarda Zona Fit como favorito y búscame solo en mis favoritos."
-- "¿Cuál es mi rutina? Dime qué fechas puedo reservar de mis clases habituales."
-- "¿Qué barrios tienen actividad esta semana?"
-- "Cancela mi reserva de mañana."
+Other things that work:
 
-## Instalación
+- "What are my bookings this week? Show me the QR code of the first one."
+- "Save Zona Fit as a favorite and search only in my favorites."
+- "What is my routine? Tell me which dates I can book for my usual classes."
+- "Which neighborhoods have activities this week?"
+- "Cancel my booking for tomorrow."
 
-Necesitas [uv](https://docs.astral.sh/uv/).
+## Installation
 
-**1. Inicia sesión una sola vez.** Te pide el correo y la contraseña de tu cuenta de Tupase. La contraseña no se guarda: solo queda un token de renovación en el llavero de tu sistema.
+You need [uv](https://docs.astral.sh/uv/).
+
+**1. Log in once.** It asks for the email and password of your Tupase account. The password is not stored: only a renewal token is kept in your system keychain.
 
 ```bash
 uvx tupase-mcp login
 ```
 
-**2. Agrega el servidor a tu cliente.**
+**2. Add the server to your client.**
 
 Claude Code:
 
@@ -38,7 +40,7 @@ Claude Code:
 claude mcp add tupase -- uvx tupase-mcp
 ```
 
-Claude Desktop (`claude_desktop_config.json`) y Cursor (`~/.cursor/mcp.json`):
+Claude Desktop (`claude_desktop_config.json`) and Cursor (`~/.cursor/mcp.json`):
 
 ```json
 {
@@ -48,52 +50,54 @@ Claude Desktop (`claude_desktop_config.json`) y Cursor (`~/.cursor/mcp.json`):
 }
 ```
 
-Reinicia el cliente y pídele algo, por ejemplo "¿quién soy en Tupase?" para comprobar que la sesión funciona.
+Restart the client and ask something, for example "who am I on Tupase?", to check that the session works.
 
-Para cerrar sesión: `uvx tupase-mcp logout`.
+To log out: `uvx tupase-mcp logout`.
 
-**Linux sin escritorio (servidores, WSL, Docker):** no hay un llavero del sistema disponible. Instala un backend de Secret Service (por ejemplo `gnome-keyring`) o el paquete `keyrings.alt` antes de iniciar sesión; de lo contrario, `login` indicará que no se pudo usar el llavero.
+**Linux without a desktop (servers, WSL, Docker):** there is no system keychain available. Install a Secret Service backend (for example `gnome-keyring`) or the `keyrings.alt` package before logging in. Otherwise, `login` will tell you that the keychain could not be used.
 
 ## Tools
 
-| Tool | Qué hace |
+| Tool | What it does |
 |---|---|
-| `buscar_actividades` | Busca por fecha y hora, disciplina, barrio, lugar, cercanía o solo favoritos. Máximo 7 días y 50 resultados por consulta |
-| `listar_disciplinas` | Disciplinas disponibles en un rango de fechas |
-| `listar_barrios` | Barrios con actividad en un rango de fechas |
-| `ver_lugar` | Un lugar con todas sus actividades de los próximos 7 días |
-| `mis_reservas` | Tus reservas, con el estado real (cruza con tus notificaciones) |
-| `reservar` | Reserva una actividad |
-| `cancelar_reserva` | Cancela una reserva por su código |
-| `ver_qr_reserva` | Devuelve el código y el QR de una reserva como imagen |
-| `mi_rutina` | Detecta tus clases habituales (mismo lugar, día y hora, al menos 2 veces) y lista sus próximas fechas reservables |
-| `agregar_favorito`, `quitar_favorito`, `mis_favoritos` | Favoritos de lugares, guardados en tu computadora |
-| `quien_soy` | Tu perfil y el estado de la cuenta |
-| `editar_perfil` | Actualiza los datos de tu perfil |
-| `mis_notificaciones` | Tus notificaciones |
-| `mis_medios_de_pago` | Tu medio de pago registrado (solo lectura; Tupase puede responder con un error según la cuenta) |
+| `buscar_actividades` | Search by date and time, discipline, neighborhood, place, distance or favorites only. Maximum 7 days and 50 results per query |
+| `listar_disciplinas` | Disciplines available in a date range |
+| `listar_barrios` | Neighborhoods with activities in a date range |
+| `ver_lugar` | One place with all its activities for the next 7 days |
+| `mis_reservas` | Your bookings, with the real status (it checks your notifications) |
+| `reservar` | Books an activity |
+| `cancelar_reserva` | Cancels a booking by its code |
+| `ver_qr_reserva` | Returns the code and the QR of a booking as an image |
+| `mi_rutina` | Detects your usual classes (same place, day and time, at least 2 times) and lists their next bookable dates |
+| `agregar_favorito`, `quitar_favorito`, `mis_favoritos` | Favorite places, stored on your computer |
+| `quien_soy` | Your profile and the account status |
+| `editar_perfil` | Updates your profile data |
+| `mis_notificaciones` | Your notifications |
+| `mis_medios_de_pago` | Your registered payment method (read only; Tupase may answer with an error depending on the account) |
 
-## Seguridad
+The tool names and the messages returned by the server are in Spanish, because that is the language of Tupase. Your assistant will translate them for you.
 
-`reservar`, `cancelar_reserva` y `editar_perfil` cambian datos de tu cuenta, así que tienen un paso extra: sin `confirmar=true` solo devuelven una vista previa, y Claude debe mostrártela y esperar tu confirmación antes de repetir la llamada.
+## Safety
 
-- La marca "destructiva" de una tool es solo una pista: cada cliente MCP decide si te pide confirmación, y si elegiste "permitir siempre" para esas tools, se ejecutan sin preguntar. **No elijas "permitir siempre" para esas tres tools.**
-- Los resultados de Tupase incluyen texto de terceros (nombres de lugares, notificaciones) que podría contener instrucciones escondidas para el modelo. El paso `confirmar` reduce ese riesgo, pero no lo elimina: revisa lo que te muestra Claude antes de confirmar.
+`reservar`, `cancelar_reserva` and `editar_perfil` change data in your account, so they have an extra step: without `confirmar=true` they only return a preview, and Claude must show it to you and wait for your confirmation before repeating the call.
 
-## Notas
+- The "destructive" mark of a tool is only a hint: each MCP client decides if it asks for confirmation, and if you chose "always allow" for those tools, they run without asking. **Do not choose "always allow" for those three tools.**
+- Tupase results include text from third parties (place names, notifications) that could contain hidden instructions for the model. The `confirmar` step reduces that risk, but it does not remove it: check what Claude shows you before you confirm.
 
-- **Horas pico:** Tupase devuelve como máximo 499 resultados por consulta. Para entregar todo, el servidor parte la búsqueda por tramos y por disciplina; una hora completa en horario pico puede tardar unos 20 segundos. Filtrar por disciplina, barrio o lugar la hace instantánea.
-- **Estado de las reservas:** algunas quedan como "Pendiente de confirmación" hasta que el lugar las confirma; `mis_reservas` las marca como confirmadas cuando Tupase te avisa que tienes el cupo.
-- **Horarios:** todas las fechas se interpretan y se muestran en hora de Montevideo.
-- **Si algo falla:** el servidor escribe sus mensajes de diagnóstico en el log del cliente MCP (stderr), nunca tus credenciales.
+## Notes
 
-## Privacidad
+- **Peak hours:** Tupase returns at most 499 results per query. To give you everything, the server splits the search by time ranges and by discipline. A full hour at a busy time can take about 20 seconds. Filtering by discipline, neighborhood or place makes it instant.
+- **Booking status:** some bookings stay as "pending confirmation" until the place confirms them. `mis_reservas` shows them as confirmed when Tupase notifies you that you got the spot.
+- **Time zone:** all dates are read and shown in Montevideo time.
+- **If something fails:** the server writes diagnostic messages to the log of the MCP client (stderr), never your credentials.
 
-- El token de renovación se guarda en el llavero del sistema (Keychain, Credential Manager o Secret Service). Tu contraseña nunca se guarda.
-- Los favoritos se guardan en un archivo local en el directorio de datos de tu usuario.
-- Nada se envía a terceros: solo hay tráfico entre tu computadora, Auth0 (el inicio de sesión de Tupase) y la API de Tupase.
+## Privacy
 
-## Desarrollo
+- The renewal token is stored in the system keychain (Keychain, Credential Manager or Secret Service). Your password is never stored.
+- Favorites are stored in a local file in your user data directory.
+- Nothing is sent to third parties: the only traffic is between your computer, Auth0 (the Tupase login) and the Tupase API.
+
+## Development
 
 ```bash
 uv sync
@@ -101,8 +105,8 @@ uv run pytest
 uv run ruff check --fix . && uv run ruff format .
 ```
 
-Los tests no usan la red ni tu llavero. Para probar las tools a mano: `npx @modelcontextprotocol/inspector uv run tupase-mcp`. Los endpoints que usa el cliente están descritos en [`docs/api.md`](docs/api.md).
+The tests do not use the network or your keychain. To try the tools by hand: `npx @modelcontextprotocol/inspector uv run tupase-mcp`. The endpoints used by the client are described in [`docs/api.md`](docs/api.md) (in Spanish).
 
-## Licencia
+## License
 
 MIT
